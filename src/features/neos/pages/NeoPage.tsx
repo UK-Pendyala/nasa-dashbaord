@@ -1,4 +1,21 @@
-import { useMemo, useState } from "react";
+/**
+ * NeoPage
+ * Renders a sortable and paginated table of Near-Earth Objects (NEOs).
+ * Uses `useNeoPage` for sorting/pagination state and delegates row rendering
+ * to `NeoTable`.
+ * 
+ * Features:
+ * - Sorting: Uses order + orderBy state (managed in useNeoPage) to sort rows by
+ *   size, closeness, or relative velocity.
+ * - Pagination: Integrates MUI <TablePagination>, showing a configurable number
+ *   of rows per page (default 10). Page and rowsPerPage are also managed in
+ *   useNeoPage.
+ * - Separation of concerns: Logic for sorting, pagination, and state
+ *   management lives in the custom hook `useNeoPage`, returning:
+ *     order, orderBy, page, rowsPerPage, rows (all items), pagedRows (slice),
+ *     and event handlers for sorting and pagination changes.
+ */
+
 import {
   Paper,
   Toolbar,
@@ -12,7 +29,11 @@ import useNeoPage from "../hooks/useNeoPage";
 import { UseNeoPageReturnType } from "../types/UseNeoPageRetrurnType";
 
 type Props = { response: NeosResponse };
-
+/**
+ * 
+ * @param {NeosResponse} response - API response containing NEO items,
+ *   total count, and query date range.
+ */
 export default function NeoPage({ response }: Props) {
   const {
     order,
