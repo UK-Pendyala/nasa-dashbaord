@@ -34,10 +34,10 @@ The backend (Fastify) acts as a proxy and normalizer for NASA’s raw data, whil
 ## Features
 
 - **Date Range Picker** – users can select a start and end date to fetch NEOs for a specific time window.  
-- **Sorting** – results can be sorted by size, closest approach to Earth, or velocity.  
+- **Sorting** – Results can be sorted by size, closest approach to Earth, or relative velocity in ascending or descending order. 
 - **Hazard Flagging** – potentially hazardous objects are visually flagged for quick identification.  
 - **Responsive Design** – optimized for both desktop and mobile with Material UI.  
-- **Error Handling** – clean error banners shown for API or network failures.  
+- **Error Handling** – clean error banner shown for API or network failures.  
 - **Blocking Loader** – overlay loader prevents interaction during the *first uncached* request.
 
 ---
@@ -62,7 +62,7 @@ npm install
 Create a `.env` file in the root directory with the following variables:
 
 ```env
-REACT_APP_API_BASE_URL=http://localhost:3000
+REACT_APP_API_BASE_URL=http://localhost:3000 #Base URL of your Fastify application
 REACT_APP_API_ENDPOINT=/amex-challenge/api/nasa/near-earth-objects
 
 ```
@@ -162,7 +162,7 @@ Once deployed, the application will be accessible in production.
 - **Redux Toolkit Query (RTKQ)** – declarative fetching with normalized caching; no need for hand-rolled thunks, reducers or actions.  
 - **React Hook Form (RHF)** – minimal re-renders, simple validation.
 - **Material UI (MUI)** – accessible and responsive components out of the box.  
-- **Error Utilities (`toMessage`)** – consistent and human-readable error banners.  
+- **Error Utilities (`toMessage`)** – consistent and human-readable error banner.  
 - **Stable Sorting Helpers** – ensures predictable ordering of NEO rows.  
 
 ### Project Layout
@@ -191,22 +191,23 @@ npm run build        # Create a production build
 ### Pagination (Server-Side)
 Implement page/limit query parameters in the backend and wire them to UI controls (e.g., MUI `TablePagination`).  
 **Benefits:** Lower payload sizes, faster initial paint, smoother navigation through large datasets.  
-**Notes:** Keep sort and filters in the querystring; preserve selection and scroll position across pages.
+
 
 ### Search Bar for NEO Rows
-Add a debounced client-side filter by name and columns; for very large datasets, add a server-side `q` parameter for full-text search.  
-**Benefits:** Quick narrowing of results without extra clicks.  
-**Notes:** Keep filter state in the URL for shareable searches.
+Add a client-side search filter by name and columns or ranges; for very large datasets, add a server-side `q` parameter for full-text search.  
+**Benefits:** Enables easy identification of rows based on specific needs or defined ranges. 
 
 ### Units Toggle (Metric ↔︎ Imperial)
 Introduce a global toggle to convert and display values (meters ↔︎ feet, km ↔︎ miles, km/s ↔︎ mi/s).  
 **Current State:** The app **only supports metric units**.  
-**Notes:** Centralize conversions in a utility to avoid drift; consider user preference persistence (localStorage).
+**Benefits:** People who understand only imperial system can also consume and understand this data
 
 ### CI/CD Pipeline with Tests
 Add GitHub Actions (or similar) with separate jobs for:
-- **Type Check & Lint:** TypeScript + ESLint.
-- **Unit Tests:** Jest + React Testing Library (frontend) or Playwright, Jest (backend utils).
+- **Type Check & Lint:** Use TypeScript and ESLint to ensure code quality and consistency.
+- **Tests:** 
+  1. **Playwright Tests:** Perform end-to-end testing to simulate real user interactions in a browser and verify application behavior.
+  2. **Unit Tests:** Ensure individual functions and components work as expected using Jest and React Testing Library.
 
 ### AI-Powered Data Analytics Chatbot
 Enable natural-language querying of NEO data through a chat interface.
