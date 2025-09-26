@@ -2,9 +2,15 @@ import { Box, Chip, TableCell, TableRow, Typography } from "@mui/material";
 import { NeoItem } from "../types/NeoItem";
 import { formatKm, formatKmPerSec, formatMeters } from "../utils";
 
-export default function NeoTableRow({ neoItem }: { neoItem: NeoItem }) {
+type NeoTableRowProps = {
+  neoItem: NeoItem;
+  rowNumber: number;
+}
+
+export default function NeoTableRow({ neoItem, rowNumber }: NeoTableRowProps) {
   return (
     <TableRow hover key={neoItem.id}>
+      <TableCell>{rowNumber}</TableCell>
       <TableCell sx={{ maxWidth: 320 }}>
         <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
           <Typography variant="body2" noWrap title={neoItem.name}>

@@ -13,13 +13,16 @@ type Props = {
   order: Order;
   orderBy: SortKey;
   onRequestSort: (key: SortKey) => void;
+  page: number,
+  rowsPerPage: number
 };
 
-export default function NeoTable({ rows, order, orderBy, onRequestSort }: Props) {
+export default function NeoTable({ rows, order, orderBy, onRequestSort, page, rowsPerPage }: Props) {
   return (
     <Table stickyHeader size="small" aria-label="NEO table">
       <TableHead>
         <TableRow>
+        <TableCell>#</TableCell>
           <TableCell>Name</TableCell>
 
           <TableCell align="right" sortDirection={orderBy === 'sizeMeters' ? order : false}>
@@ -57,8 +60,8 @@ export default function NeoTable({ rows, order, orderBy, onRequestSort }: Props)
       </TableHead>
 
       <TableBody>
-        {rows.map((n) => (
-          <NeoTableRow key={n.id} neoItem={n}/>
+        {rows.map((n, idx) => (
+          <NeoTableRow key={n.id} neoItem={n} rowNumber={page * rowsPerPage + idx + 1}/>
         ))}
         {rows.length === 0 && (
           <TableRow>
