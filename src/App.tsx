@@ -34,22 +34,13 @@ export default function App() {
   const [params, setParams] = useState<QueryParams | null>(null);
 
   // RTK Query: fetch when params exist
-  const {
-    data,
-    currentData,
-    error,
-    isError,
-    isFetching,
-    isSuccess,
-    isUninitialized,
-    isLoading,
-    refetch,
-  } = useGetNeosQuery(params ?? skipToken, {
-    refetchOnFocus: true,
-    refetchOnReconnect: true,
-    refetchOnMountOrArgChange: true,
-    // pollingInterval: 10000 // can enable this for auto-refresh
-  });
+  const { data, currentData, error, isError, isFetching, isSuccess, isLoading, refetch } =
+    useGetNeosQuery(params ?? skipToken, {
+      refetchOnFocus: true,
+      refetchOnReconnect: true,
+      refetchOnMountOrArgChange: true,
+      // pollingInterval: 10000 // can enable this for auto-refresh
+    });
 
   const formSubmitHandler = (formValues: QueryParams) => {
     setParams(formValues);

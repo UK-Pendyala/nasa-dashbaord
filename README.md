@@ -67,14 +67,13 @@ REACT_APP_API_ENDPOINT=/amex-challenge/api/nasa/near-earth-objects
 These variables tell the frontend where to reach the Fastify backend.
 ```
 
-## Setting the port for windows (Not required for Mac/Linux)
+### 3. Setting the port for windows (Not required for Mac/Linux)
 
 The frontend must run on **port 3001**, since the backend only allows this origin in its **CORS configuration**.  
 Trying to run on any other port will result in **CORS errors**.
 
-### Setting the Port
+#### Setting the Port if using windows
 
-#### ✅ Cross-Platform (Recommended)
 Use [`cross-env`](https://www.npmjs.com/package/cross-env) to make the setup work on all systems.
 
 1. Install it as a dev dependency:
@@ -82,10 +81,6 @@ Use [`cross-env`](https://www.npmjs.com/package/cross-env) to make the setup wor
 npm install --save-dev cross-env
 ```
 
-### 3. Start the app
-```bash
-npm start
-```
 
 ### Update Your `package.json` Scripts
 
@@ -99,6 +94,11 @@ Add the following to the `scripts` section of your `package.json`:
 }
 ```
 
+### 4. Start the app
+Execute this command your terminal
+```bash
+npm start
+```
 Now npm start will always run the frontend on http://localhost:3001, regardless of OS.
 
 

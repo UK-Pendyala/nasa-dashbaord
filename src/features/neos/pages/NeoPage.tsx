@@ -34,7 +34,6 @@ export default function NeoPage({ response }: Props) {
     orderBy,
     page,
     rowsPerPage,
-    rows,
     pagedRows,
     handleRequestSort,
     handleChangePage,

@@ -1,7 +1,5 @@
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { SerializedError } from '@reduxjs/toolkit';
 import { toMessage } from './errorUtils';
 
 type Props = { error: unknown };

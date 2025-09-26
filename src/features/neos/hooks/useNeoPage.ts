@@ -3,8 +3,6 @@ import { getComparator, Order, SortKey, stableSort } from '../utils';
 import { NeosResponse } from '../types/NeosResponse';
 import { UseNeoPageReturnType } from '../types/UseNeoPageRetrurnType';
 
-type Props = { response: NeosResponse };
-
 /**
  * useNeoPage
  * Custom hook for managing sorting and pagination of NEO table data.

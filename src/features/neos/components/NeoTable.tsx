@@ -1,18 +1,7 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-  Chip,
-  Typography,
-  Box,
-} from '@mui/material';
+import { Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import type { NeoItem } from '../types/NeoItem';
 
 import type { SortKey, Order } from '../utils';
-import { formatMeters, formatKm, formatKmPerSec } from '../utils';
 import NeoTableRow from './NeoTableRow';
 
 type Props = {
