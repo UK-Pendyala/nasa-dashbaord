@@ -16,13 +16,14 @@ The backend (Fastify) acts as a proxy and normalizer for NASA’s raw data, whil
 
 ---
 
-## Caching Strategy (via RTK Query)
+## Caching Strategy (via RTK Query) (Client-Side)
 
-- **Cache Duration** – `keepUnusedDataFor: 300` keeps the cache for 5 minutes after the last use.  
+- **Cache Duration** – keeps the cache for 5 minutes after the last use.  
 - **Revalidation Triggers**:  
   - On window focus (`refetchOnFocus: true`).  
   - On reconnect (`refetchOnReconnect: true`).  
   - On mount or argument change (`refetchOnMountOrArgChange: true`).  
+    This means that when a user fetches data for a specific date for the first time, a loading indicator is displayed on the screen. Once the data is fetched, it is cached by RTK in Redux internally. If the user fetches data for a different date for the first time, they will again see a loading indicator while that data is being fetched. However, if the user views dates they have previously accessed (i.e., the data is already cached), no loading indicator will be shown. Instead, the cached data is displayed immediately, and the data is silently refetched in the background and updated instantaneously.
 - **Loading Indicator** – Shown only when no cached data exists (`!currentData && isLoading || isFetching`).  
   - If cached data exists, stale data is shown instantly while silently refetching in the background.  
 - **Trade-off** – Avoids flickering spinners when cached data is available, while still ensuring data freshness.  
@@ -49,7 +50,7 @@ The backend (Fastify) acts as a proxy and normalizer for NASA’s raw data, whil
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/<your-username>/nasa-neo-dashboard.git
+git clone https://github.com/UK-Pendyala/nasa-dashbaord.git
 cd nasa-neo-dashboard
 npm install
 ```
@@ -64,8 +65,8 @@ Create a `.env` file in the root directory with the following variables:
 REACT_APP_API_BASE_URL=http://localhost:3000
 REACT_APP_API_ENDPOINT=/amex-challenge/api/nasa/near-earth-objects
 
-These variables tell the frontend where to reach the Fastify backend.
 ```
+These variables tell the frontend where to reach the Fastify backend.
 
 ### 3. Setting the port for windows (Not required for Mac/Linux)
 
@@ -111,7 +112,7 @@ This project uses **ESLint** and **Prettier** with versions compatible with `rea
 
 #### Configurations:
 1. **`.eslintrc.json`**:  
-   - Extends: `react-app`, `react-app/jest`, `plugin:@typescript-eslint/recommended`, `plugin:prettier/recommended`.
+   - This file configures ESLint rules for the project, extending recommended settings for React, Jest, TypeScript, and Prettier to ensure code quality and consistent formatting.
 
 2. **`.prettierrc`**:  
    - Defines formatting rules (e.g., quotes, line width, etc.).
@@ -122,7 +123,7 @@ This project uses **ESLint** and **Prettier** with versions compatible with `rea
 - `npm run format` – Format code using Prettier.  
 
 
-### Export for Production
+### 5. Export for Production
 
 To prepare the application for production, follow these steps:
 
@@ -148,8 +149,8 @@ Using a custom server (e.g., Nginx, Apache): Copy the contents of the build fold
 #### 3. Configure Backend for Production
 Ensure the backend is deployed and accessible at the URL specified in the REACT_APP_API_BASE_URL environment variable. Update this variable in the .env file before building the app.
 
-#### 4. Configure Backend for Production
-Upload the contents of the build folder to your hosting provider (e.g., AWS EC2, Netlify, Vercel, etc.) and configure the hosting service to serve the app.
+#### 4. Configure Frontend for Production
+Upload the contents of the build folder to any hosting provider (e.g., AWS EC2, Netlify, Vercel, etc.) and configure the hosting service to serve the app.
 
 Once deployed, the application will be accessible in production.
 
