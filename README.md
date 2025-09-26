@@ -169,18 +169,18 @@ Once deployed, the application will be accessible in production.
 ```bash
 frontend/
   src/
-    features/neos/     # domain: slices, hooks, UI
-    components/        # shared UI: ErrorBanner, LoadingOverlay
-    pages/             # page-level containers
-backend/
-  src/
-    routes/            # API routes (NEO feed)
-    schemas/           # validation (e.g., Joi)
-    lib/               # NASA client, mappers, utils
+    components/                # shared UI: ErrorBanner, LoadingOverlay
+    features/neos/             # domain: slices, hooks, UI
+    features/neos/pages/       # page-level containers
+    features/neos/componenets/ # feature-level components
+    features/neos/types        # feature-level types
+    features/neos/utils        # feature-level utils
+    features/neos/hooks        # feature-level hooks
 ```
 
 ### Helpful Scripts
 ```bash
+npm run start        # Start the application in development mode
 npm run lint         # Run ESLint to check for code quality issues
 npm test             # Run Jest and React Testing Library tests
 npm run build        # Create a production build
