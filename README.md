@@ -188,28 +188,29 @@ npm run build        # Create a production build
 
 ## Possible Enhancements
 
-### Pagination (Server-Side)
+### 1. Pagination (Server-Side)
 Implement page/limit query parameters in the backend and wire them to UI controls (e.g., MUI `TablePagination`).  
 **Benefits:** Lower payload sizes, faster initial paint, smoother navigation through large datasets.  
 
 
-### Search Bar for NEO Rows
+### 2. Search Bar for NEO Rows
 Add a client-side search filter by name and columns or ranges; for very large datasets, add a server-side `q` parameter for full-text search.  
 **Benefits:** Enables easy identification of rows based on specific needs or defined ranges. 
 
-### Units Toggle (Metric ↔︎ Imperial)
+### 3. Units Toggle (Metric ↔︎ Imperial)
 Introduce a global toggle to convert and display values (meters ↔︎ feet, km ↔︎ miles, km/s ↔︎ mi/s).  
 **Current State:** The app **only supports metric units**.  
 **Benefits:** People who understand only imperial system can also consume and understand this data
 
-### CI/CD Pipeline with Tests
+### 4. CI/CD Pipeline with Tests
 Add GitHub Actions (or similar) with separate jobs for:
 - **Type Check & Lint:** Use TypeScript and ESLint to ensure code quality and consistency.
 - **Tests:** 
   1. **Playwright Tests:** Perform end-to-end testing to simulate real user interactions in a browser and verify application behavior.
   2. **Unit Tests:** Ensure individual functions and components work as expected using Jest and React Testing Library.
+**Benefits:** Continuous Integration and Continuous Deployment to staging without manual effort.
 
-### AI-Powered Data Analytics Chatbot
+### 5. AI-Powered Data Analytics Chatbot
 Enable natural-language querying of NEO data through a chat interface.
 **Approach:**
 1. **Chat Server with Agentic AI:** Build a small service on AWS EC2 that orchestrates multiple “tools/agents” (e.g., **OpenAI**, **Claude**) to parse user questions and plan actions.
