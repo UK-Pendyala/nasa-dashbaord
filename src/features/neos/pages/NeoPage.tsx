@@ -8,8 +8,6 @@ import {
 } from "@mui/material";
 import type { NeosResponse } from "../types/NeosResponse";
 import NeoTable from "../components/NeoTable";
-import type { Order, SortKey } from "../utils";
-import { getComparator, stableSort } from "../utils";
 import useNeoPage from "../hooks/useNeoPage";
 import { UseNeoPageReturnType } from "../types/UseNeoPageRetrurnType";
 
