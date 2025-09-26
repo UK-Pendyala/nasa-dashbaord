@@ -1,3 +1,19 @@
+/**
+ * @file App.tsx
+ * Root application component for the NASA NEO Dashboard.
+ *
+ * Responsibilities:
+ * - Provides the top-level layout and introduction text.
+ * - Renders a date range form (`DateRangeForm`) to let users query NEO data.
+ * - Integrates with the RTK Query `useGetNeosQuery` hook for fetching from the backend.
+ * - Displays results using the `NeoPage` component when data is available.
+ * - Shows error feedback with `ErrorBanner` and a transparent blocking
+ *   `LoadingOverlay` while the first request is in-flight.
+ * - Renders a placeholder prompt when no data has been fetched yet.
+ *
+ * @component
+ * @returns {JSX.Element} Container with form, status indicators, and results table.
+ */
 import { useState } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -40,9 +56,6 @@ export default function App() {
     if (isError) refetch();
   };
 
-  // Show a blocking overlay only when fetching and no cached data yet
-  // const showOverlay = Boolean(isFetching && !data);
-  // console.log(isLoading, isFetching);
   const showOverlay = !currentData && (isLoading || isFetching);
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
