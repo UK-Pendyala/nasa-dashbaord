@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Box, Button, Stack, TextField } from '@mui/material';
-import useNeoData from '../hooks/functions';
+import useNeoData from '../hooks/useNeoData';
 import { FormValues } from '../types/FormValues';
 
 
