@@ -62,7 +62,7 @@ npm install
 Create a `.env` file in the root directory with the following variables:
 
 ```env
-REACT_APP_API_BASE_URL=http://localhost:3000 #Base URL of your Fastify application
+REACT_APP_API_BASE_URL=http://localhost:3000 #Base URL of the Fastify application
 REACT_APP_API_ENDPOINT=/amex-challenge/api/nasa/near-earth-objects
 
 ```
