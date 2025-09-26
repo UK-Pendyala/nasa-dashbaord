@@ -16,7 +16,17 @@ type Props = {
   page: number,
   rowsPerPage: number
 };
-
+/**
+ * NeoTable
+ * Renders the full NEO table with the fillowing columns (Row Number, Name, Size, Closess to Earth, Relative Velocity, Hazardous)
+ *
+ * @param {NeoItem[]} rows - Current page of NEO rows to display.
+ * @param {Order} order - Current sort direction ("asc" or "desc").
+ * @param {SortKey} orderBy - Column currently sorted by.
+ * @param {Function} onRequestSort - Handler to change sort column/direction.
+ * @param {number} page - Current page number (zero-based).
+ * @param {number} rowsPerPage - Number of rows displayed per page.
+ */
 export default function NeoTable({ rows, order, orderBy, onRequestSort, page, rowsPerPage }: Props) {
   return (
     <Table stickyHeader size="small" aria-label="NEO table">

@@ -7,6 +7,14 @@ type NeoTableRowProps = {
   rowNumber: number;
 }
 
+/**
+ * NeoTableRow
+ * Renders a single NEO row in the table, showing index, name,
+ * size, closeness, velocity, and hazardous status.
+ *
+ * @param {NeoItem} neoItem - The NEO data for this row.
+ * @param {number} rowNumber - The row index number to display.
+ */
 export default function NeoTableRow({ neoItem, rowNumber }: NeoTableRowProps) {
   return (
     <TableRow hover key={neoItem.id}>
