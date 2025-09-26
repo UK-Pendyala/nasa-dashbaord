@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { NeosResponse } from './types/NeosResponse';
+import { GetNeosArgs } from './types/GetNeosArgs';
 
-const baseUrl = process.env.REACT_APP_API_BASE_URL || ''
-export type GetNeosArgs = {
-  startDate: string;   // YYYY-MM-DD (required)
-  endDate?: string;    // optional
-};
+const baseUrl = process.env.REACT_APP_API_BASE_URL || '';
+const endpoint = process.env.REACT_APP_API_ENDPOINT || '';
+
+// const apiUrl = `${baseUrl}/${endpoint}`;
 
 export const neosApi = createApi({
   reducerPath: 'neosApi',
@@ -15,7 +15,7 @@ export const neosApi = createApi({
       query: ({ startDate, endDate }) => {
         const params = new URLSearchParams({ startDate });
         if (endDate) params.set('endDate', endDate);
-        return { url: `/near-earth-objects?${params.toString()}` };
+        return { url: `/${endpoint}?${params.toString()}` };
       },
     }),
   }),
