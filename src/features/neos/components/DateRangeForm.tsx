@@ -11,8 +11,8 @@ type Props = {
 };
 
 export default function DateRangeForm({ onSubmit, defaultValues }: Props) {
-  const { register, handleSubmit, errors } = useNeoData();
-  
+  const { register, handleSubmit, formState: { errors } } = useNeoData({ defaultValues });
+
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mb: 2 }}>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'flex-end' }}>

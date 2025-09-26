@@ -15,9 +15,14 @@ export const neosApi = createApi({
       query: ({ startDate, endDate }) => {
         const params = new URLSearchParams({ startDate });
         if (endDate) params.set('endDate', endDate);
-        return { url: `/${endpoint}?${params.toString()}` };
-      },
+        return {
+          url: endpoint,
+          params: { startDate, ...(endDate ? { endDate } : {}) },
+        }
+      },  
+      keepUnusedDataFor: 300,
     }),
+    
   }),
 });
 
