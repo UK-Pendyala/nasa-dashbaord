@@ -3,7 +3,7 @@
  * Renders a sortable and paginated table of Near-Earth Objects (NEOs).
  * Uses `useNeoPage` for sorting/pagination state and delegates row rendering
  * to `NeoTable`.
- * 
+ *
  * Features:
  * - Sorting: Uses order + orderBy state (managed in useNeoPage) to sort rows by
  *   size, closeness, or relative velocity.
@@ -16,21 +16,15 @@
  *     and event handlers for sorting and pagination changes.
  */
 
-import {
-  Paper,
-  Toolbar,
-  Typography,
-  TableContainer,
-  TablePagination,
-} from "@mui/material";
-import type { NeosResponse } from "../types/NeosResponse";
-import NeoTable from "../components/NeoTable";
-import useNeoPage from "../hooks/useNeoPage";
-import { UseNeoPageReturnType } from "../types/UseNeoPageRetrurnType";
+import { Paper, Toolbar, Typography, TableContainer, TablePagination } from '@mui/material';
+import type { NeosResponse } from '../types/NeosResponse';
+import NeoTable from '../components/NeoTable';
+import useNeoPage from '../hooks/useNeoPage';
+import { UseNeoPageReturnType } from '../types/UseNeoPageRetrurnType';
 
 type Props = { response: NeosResponse };
 /**
- * 
+ *
  * @param {NeosResponse} response - API response containing NEO items,
  *   total count, and query date range.
  */
@@ -51,8 +45,7 @@ export default function NeoPage({ response }: Props) {
     <Paper variant="outlined">
       <Toolbar sx={{ px: 2 }}>
         <Typography variant="subtitle1">
-          Results: {response.count} &nbsp; ({response.startDate} →{" "}
-          {response.endDate})
+          Results: {response.count} &nbsp; ({response.startDate} → {response.endDate})
         </Typography>
       </Toolbar>
 

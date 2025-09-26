@@ -17,7 +17,6 @@ import { GetNeosArgs } from './types/GetNeosArgs';
 const baseUrl = process.env.REACT_APP_API_BASE_URL || '';
 const endpoint = process.env.REACT_APP_API_ENDPOINT || '';
 
-
 export const neosApi = createApi({
   reducerPath: 'neosApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
@@ -37,11 +36,10 @@ export const neosApi = createApi({
         return {
           url: endpoint,
           params: { startDate, ...(endDate ? { endDate } : {}) },
-        }
-      },  
+        };
+      },
       keepUnusedDataFor: 300, // cached data expires, if not used for 5 minutes.
     }),
-    
   }),
 });
 

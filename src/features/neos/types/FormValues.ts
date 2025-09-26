@@ -1,4 +1,3 @@
-
 /**
  * @type FormValues - Form values captured from the date range picker.
  *  @property startDate - Selected start date in YYYY-MM-DD format.

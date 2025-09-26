@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @type NeoItem - Represents a single Near-Earth Object (NEO) returned by the NASA backend.
  *  @property id - Unique NASA/JPL identifier.
  *  @property name - Display name or provisional designation of the object.

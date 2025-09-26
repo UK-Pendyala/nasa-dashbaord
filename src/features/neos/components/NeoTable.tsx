@@ -1,6 +1,13 @@
 import {
-  Table, TableBody, TableCell, TableHead, TableRow,
-  TableSortLabel, Chip, Typography, Box
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableSortLabel,
+  Chip,
+  Typography,
+  Box,
 } from '@mui/material';
 import type { NeoItem } from '../types/NeoItem';
 
@@ -13,8 +20,8 @@ type Props = {
   order: Order;
   orderBy: SortKey;
   onRequestSort: (key: SortKey) => void;
-  page: number,
-  rowsPerPage: number
+  page: number;
+  rowsPerPage: number;
 };
 /**
  * NeoTable
@@ -27,12 +34,19 @@ type Props = {
  * @param {number} page - Current page number (zero-based).
  * @param {number} rowsPerPage - Number of rows displayed per page.
  */
-export default function NeoTable({ rows, order, orderBy, onRequestSort, page, rowsPerPage }: Props) {
+export default function NeoTable({
+  rows,
+  order,
+  orderBy,
+  onRequestSort,
+  page,
+  rowsPerPage,
+}: Props) {
   return (
     <Table stickyHeader size="small" aria-label="NEO table">
       <TableHead>
         <TableRow>
-        <TableCell>#</TableCell>
+          <TableCell>#</TableCell>
           <TableCell>Name</TableCell>
 
           <TableCell align="right" sortDirection={orderBy === 'sizeMeters' ? order : false}>
@@ -55,7 +69,10 @@ export default function NeoTable({ rows, order, orderBy, onRequestSort, page, ro
             </TableSortLabel>
           </TableCell>
 
-          <TableCell align="right" sortDirection={orderBy === 'relativeVelocityKmS' ? order : false}>
+          <TableCell
+            align="right"
+            sortDirection={orderBy === 'relativeVelocityKmS' ? order : false}
+          >
             <TableSortLabel
               active={orderBy === 'relativeVelocityKmS'}
               direction={orderBy === 'relativeVelocityKmS' ? order : 'asc'}
@@ -71,11 +88,13 @@ export default function NeoTable({ rows, order, orderBy, onRequestSort, page, ro
 
       <TableBody>
         {rows.map((n, idx) => (
-          <NeoTableRow key={n.id} neoItem={n} rowNumber={page * rowsPerPage + idx + 1}/>
+          <NeoTableRow key={n.id} neoItem={n} rowNumber={page * rowsPerPage + idx + 1} />
         ))}
         {rows.length === 0 && (
           <TableRow>
-            <TableCell colSpan={5} align="center">No results</TableCell>
+            <TableCell colSpan={5} align="center">
+              No results
+            </TableCell>
           </TableRow>
         )}
       </TableBody>

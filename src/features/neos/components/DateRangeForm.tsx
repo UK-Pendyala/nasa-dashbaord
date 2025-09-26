@@ -1,8 +1,8 @@
-import { useForm } from "react-hook-form";
-import { Box, Button, Stack, TextField } from "@mui/material";
-import useNeoData from "../hooks/useNeoData";
-import { FormValues } from "../types/FormValues";
-import SearchIcon from "@mui/icons-material/Search";
+import { useForm } from 'react-hook-form';
+import { Box, Button, Stack, TextField } from '@mui/material';
+import useNeoData from '../hooks/useNeoData';
+import { FormValues } from '../types/FormValues';
+import SearchIcon from '@mui/icons-material/Search';
 
 type Props = {
   defaultValues?: FormValues;
@@ -25,50 +25,46 @@ export default function DateRangeForm({ onSubmit, defaultValues }: Props) {
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mb: 2 }}>
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        spacing={2}
-        alignItems={{ sm: "flex-start" }}
-      >
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems={{ sm: 'flex-start' }}>
         <TextField
           label="Start Date"
           type="date"
-          slotProps={{ inputLabel: { shrink: true }}} // Ensures the label stays visible above the input field even when empty
+          slotProps={{ inputLabel: { shrink: true } }} // Ensures the label stays visible above the input field even when empty
           fullWidth
-          {...register("startDate", {
-            required: "startDate is required",
+          {...register('startDate', {
+            required: 'startDate is required',
             pattern: {
               value: /^\d{4}-\d{2}-\d{2}$/,
-              message: "Use YYYY-MM-DD",
+              message: 'Use YYYY-MM-DD',
             },
           })}
           error={!!errors.startDate}
-          helperText={errors.startDate?.message ?? "\u00A0"}
+          helperText={errors.startDate?.message ?? '\u00A0'}
         />
 
         <TextField
           label="End Date (optional)"
           type="date"
-          slotProps={{ inputLabel: { shrink: true }}}
+          slotProps={{ inputLabel: { shrink: true } }}
           fullWidth
-          {...register("endDate", {
+          {...register('endDate', {
             pattern: {
               value: /^\d{4}-\d{2}-\d{2}$/,
-              message: "Use YYYY-MM-DD",
+              message: 'Use YYYY-MM-DD',
             },
           })}
           error={!!errors.endDate}
-          helperText={errors.endDate?.message ?? "\u00A0"}
+          helperText={errors.endDate?.message ?? '\u00A0'}
         />
 
         <Button
           type="submit"
           variant="contained"
           sx={{
-            height: "56px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            height: '56px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <SearchIcon />

@@ -1,7 +1,6 @@
-
-import { Stack, Typography } from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Stack, Typography } from '@mui/material';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 type Props = { open: boolean };
 /**
@@ -19,15 +18,10 @@ type Props = { open: boolean };
  */
 export default function LoadingOverlay({ open }: Props) {
   return (
-    <Backdrop
-      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.modal + 1 }}
-      open={open}
-    >
+    <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.modal + 1 }} open={open}>
       <Stack spacing={2} alignItems="center">
         <CircularProgress color="inherit" />
-        <Typography variant="h6">
-          Fetching asteroid data from NASA...
-        </Typography>
+        <Typography variant="h6">Fetching asteroid data from NASA...</Typography>
       </Stack>
     </Backdrop>
   );

@@ -105,7 +105,24 @@ Now npm start will always run the frontend on http://localhost:3001, regardless 
 Once both are running, open [http://localhost:3001](http://localhost:3001) in your browser.  
 The frontend will talk to the backend on port 3000, while itself runs on port 3001 due to CORS restrictions.
 
-### 4. Export for Production
+### Linting & Formatting
+
+This project uses **ESLint** and **Prettier** with versions compatible with `react-scripts@5`.
+
+#### Configurations:
+1. **`.eslintrc.json`**:  
+   - Extends: `react-app`, `react-app/jest`, `plugin:@typescript-eslint/recommended`, `plugin:prettier/recommended`.
+
+2. **`.prettierrc`**:  
+   - Defines formatting rules (e.g., quotes, line width, etc.).
+
+#### Commands:
+- `npm run lint` – Check for linting issues.  
+- `npm run lint:fix` – Automatically fix linting issues.  
+- `npm run format` – Format code using Prettier.  
+
+
+### Export for Production
 
 To prepare the application for production, follow these steps:
 

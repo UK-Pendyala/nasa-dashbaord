@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
-import { getComparator, Order, SortKey, stableSort } from "../utils";
-import { NeosResponse } from "../types/NeosResponse";
-import { UseNeoPageReturnType } from "../types/UseNeoPageRetrurnType";
+import { useMemo, useState } from 'react';
+import { getComparator, Order, SortKey, stableSort } from '../utils';
+import { NeosResponse } from '../types/NeosResponse';
+import { UseNeoPageReturnType } from '../types/UseNeoPageRetrurnType';
 
 type Props = { response: NeosResponse };
 
@@ -17,7 +17,7 @@ const useNeoPage = (response: NeosResponse): UseNeoPageReturnType => {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<SortKey>('closenessKm');
 
-   // Current page number (zero-based)
+  // Current page number (zero-based)
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -25,7 +25,6 @@ const useNeoPage = (response: NeosResponse): UseNeoPageReturnType => {
   const rows = useMemo(() => {
     return stableSort(response.items, getComparator(order, orderBy));
   }, [response.items, order, orderBy]);
-
 
   // Slice sorted rows to show only the current page
   const pagedRows = useMemo(() => {
@@ -47,7 +46,7 @@ const useNeoPage = (response: NeosResponse): UseNeoPageReturnType => {
 
   // Update rowsPerPage and reset to first page
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
@@ -62,8 +61,8 @@ const useNeoPage = (response: NeosResponse): UseNeoPageReturnType => {
     pagedRows,
     handleRequestSort,
     handleChangePage,
-    handleChangeRowsPerPage
-  }
-}
+    handleChangeRowsPerPage,
+  };
+};
 
 export default useNeoPage;

@@ -1,7 +1,7 @@
-import { NeoItem } from "./NeoItem";
+import { NeoItem } from './NeoItem';
 
 /**
- * 
+ *
  * @type NeosResponse - API response payload for NEO data.
  *  @property startDate - Query start date.
  *  @property endDate - Query end date.

@@ -6,6 +6,6 @@
  *   @property endDate - Optional end date in YYYY-MM-DD format.
  */
 export type GetNeosArgs = {
-  startDate: string;  
+  startDate: string;
   endDate?: string;
 };

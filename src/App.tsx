@@ -14,18 +14,18 @@
  * @component
  * @returns {JSX.Element} Container with form, status indicators, and results table.
  */
-import { useState } from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
+import { useState } from 'react';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
-import DateRangeForm from "./features/neos/components/DateRangeForm";
-import ErrorBanner from "./components/Error/ErrorBanner";
-import LoadingOverlay from "./components/LoadingOverlay";
+import DateRangeForm from './features/neos/components/DateRangeForm';
+import ErrorBanner from './components/Error/ErrorBanner';
+import LoadingOverlay from './components/LoadingOverlay';
 
-import NeoPage from "./features/neos/pages/NeoPage";
-import { useGetNeosQuery } from "./features/neos/neosSlice";
-import { skipToken } from "@reduxjs/toolkit/query";
-import { Box } from "@mui/material";
+import NeoPage from './features/neos/pages/NeoPage';
+import { useGetNeosQuery } from './features/neos/neosSlice';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { Box } from '@mui/material';
 
 type QueryParams = { startDate: string; endDate?: string };
 
@@ -68,10 +68,9 @@ export default function App() {
       </Typography>
 
       <Typography variant="body1" sx={{ mb: 3 }}>
-        NeoWs (Near Earth Object Web Service) is a RESTful API from NASA that
-        provides asteroid information based on their closest approach date to
-        Earth. Our backend integrates with NeoWs to process this data, making it
-        easy for the frontend to search and display results.
+        NeoWs (Near Earth Object Web Service) is a RESTful API from NASA that provides asteroid
+        information based on their closest approach date to Earth. Our backend integrates with NeoWs
+        to process this data, making it easy for the frontend to search and display results.
       </Typography>
 
       <DateRangeForm onSubmit={formSubmitHandler} />
@@ -83,11 +82,11 @@ export default function App() {
       {!data && !isFetching && !error && (
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "40vh",
-            textAlign: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '40vh',
+            textAlign: 'center',
           }}
         >
           <Typography variant="h4" color="text.secondary">

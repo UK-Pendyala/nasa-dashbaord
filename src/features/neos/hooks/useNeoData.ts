@@ -1,4 +1,3 @@
-
 /**
  * useNeoData
  * Wraps react-hook-form for managing NEO date range input state.
@@ -14,6 +13,6 @@ const useNeoData = ({ defaultValues }: Props) => {
     defaultValues: defaultValues ?? { startDate: '', endDate: '' },
   });
   return { register, handleSubmit, formState };
-}
+};
 
 export default useNeoData;
