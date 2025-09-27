@@ -16,36 +16,53 @@
  *     and event handlers for sorting and pagination changes.
  */
 
-import { Paper, Toolbar, Typography, TableContainer, TablePagination } from '@mui/material';
+import {
+  Paper,
+  Toolbar,
+  Typography,
+  TableContainer,
+  TablePagination,
+  Stack,
+  Switch,
+} from '@mui/material';
 import type { NeosResponse } from '../types/NeosResponse';
 import NeoTable from '../components/NeoTable';
 import useNeoPage from '../hooks/useNeoPage';
 import { UseNeoPageReturnType } from '../types/UseNeoPageRetrurnType';
+import UnitToggle from '../components/UnitToggle';
+import ProgressBar from '../components/ProgressBar';
 
-type Props = { response: NeosResponse };
+type Props = { response: NeosResponse; isFetching: boolean; isLoading: boolean };
 /**
  *
  * @param {NeosResponse} response - API response containing NEO items,
  *   total count, and query date range.
  */
-export default function NeoPage({ response }: Props) {
+export default function NeoPage({ response, isFetching, isLoading }: Props) {
   const {
     order,
     orderBy,
     page,
     rowsPerPage,
     pagedRows,
+    unit,
+    sizeKey,
+    closenessKey,
+    velocityKey,
     handleRequestSort,
     handleChangePage,
     handleChangeRowsPerPage,
+    setUnit,
   }: UseNeoPageReturnType = useNeoPage(response);
 
   return (
     <Paper variant="outlined">
-      <Toolbar sx={{ px: 2 }}>
+      <Toolbar sx={{ px: 2, justifyContent: 'space-between', position: 'relative' }}>
+        {isFetching && !isLoading && <ProgressBar />}
         <Typography variant="subtitle1">
           Results: {response.count} &nbsp; ({response.startDate} → {response.endDate})
         </Typography>
+        <UnitToggle unit={unit} setUnit={setUnit} />
       </Toolbar>
 
       <TableContainer sx={{ maxHeight: 560 }}>
@@ -56,6 +73,10 @@ export default function NeoPage({ response }: Props) {
           onRequestSort={handleRequestSort}
           page={page}
           rowsPerPage={rowsPerPage}
+          sizeKey={sizeKey}
+          closenessKey={closenessKey}
+          velocityKey={velocityKey}
+          unit={unit}
         />
       </TableContainer>
 

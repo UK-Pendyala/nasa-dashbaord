@@ -44,7 +44,7 @@ export default function App() {
 
   const formSubmitHandler = (formValues: QueryParams) => {
     setParams(formValues);
-    if (isError) refetch();
+    refetch();
   };
 
   const showOverlay = !currentData && (isLoading || isFetching);
@@ -68,7 +68,9 @@ export default function App() {
 
       {error && <ErrorBanner error={error} />}
 
-      {isSuccess && data && <NeoPage response={data} />}
+      {isSuccess && data && (
+        <NeoPage response={data} isFetching={isFetching} isLoading={isLoading} />
+      )}
 
       {!data && !isFetching && !error && (
         <Box

@@ -3,14 +3,19 @@ import type { NeoItem } from '../types/NeoItem';
 
 import type { SortKey, Order } from '../utils';
 import NeoTableRow from './NeoTableRow';
+import { Units } from '../types/Units';
 
 type Props = {
   rows: NeoItem[];
   order: Order;
   orderBy: SortKey;
-  onRequestSort: (key: SortKey) => void;
   page: number;
   rowsPerPage: number;
+  sizeKey: SortKey;
+  closenessKey: SortKey;
+  velocityKey: SortKey;
+  unit: Units;
+  onRequestSort: (key: SortKey) => void;
 };
 /**
  * NeoTable
@@ -22,6 +27,10 @@ type Props = {
  * @param {Function} onRequestSort - Handler to change sort column/direction.
  * @param {number} page - Current page number (zero-based).
  * @param {number} rowsPerPage - Number of rows displayed per page.
+ * @param {SortKey} sizeKey - Key for size based on current unit system.
+ * @param {SortKey} closenessKey - Key for closeness based on current unit system.
+ * @param {SortKey} velocityKey - Key for velocity based on current unit system.
+ * @param {Units} unit - Current unit system ("metric" or "imperial").
  */
 export default function NeoTable({
   rows,
@@ -30,6 +39,10 @@ export default function NeoTable({
   onRequestSort,
   page,
   rowsPerPage,
+  sizeKey,
+  closenessKey,
+  velocityKey,
+  unit,
 }: Props) {
   return (
     <Table stickyHeader size="small" aria-label="NEO table">
@@ -38,34 +51,31 @@ export default function NeoTable({
           <TableCell>#</TableCell>
           <TableCell>Name</TableCell>
 
-          <TableCell align="right" sortDirection={orderBy === 'sizeMeters' ? order : false}>
+          <TableCell align="right" sortDirection={orderBy === sizeKey ? order : false}>
             <TableSortLabel
-              active={orderBy === 'sizeMeters'}
-              direction={orderBy === 'sizeMeters' ? order : 'asc'}
-              onClick={() => onRequestSort('sizeMeters')}
+              active={orderBy === sizeKey}
+              direction={orderBy === sizeKey ? order : 'asc'}
+              onClick={() => onRequestSort(sizeKey)}
             >
               Size
             </TableSortLabel>
           </TableCell>
 
-          <TableCell align="right" sortDirection={orderBy === 'closenessKm' ? order : false}>
+          <TableCell align="right" sortDirection={orderBy === closenessKey ? order : false}>
             <TableSortLabel
-              active={orderBy === 'closenessKm'}
-              direction={orderBy === 'closenessKm' ? order : 'asc'}
-              onClick={() => onRequestSort('closenessKm')}
+              active={orderBy === closenessKey}
+              direction={orderBy === closenessKey ? order : 'asc'}
+              onClick={() => onRequestSort(closenessKey)}
             >
               Closeness to Earth
             </TableSortLabel>
           </TableCell>
 
-          <TableCell
-            align="right"
-            sortDirection={orderBy === 'relativeVelocityKmS' ? order : false}
-          >
+          <TableCell align="right" sortDirection={orderBy === velocityKey ? order : false}>
             <TableSortLabel
-              active={orderBy === 'relativeVelocityKmS'}
-              direction={orderBy === 'relativeVelocityKmS' ? order : 'asc'}
-              onClick={() => onRequestSort('relativeVelocityKmS')}
+              active={orderBy === velocityKey}
+              direction={orderBy === velocityKey ? order : 'asc'}
+              onClick={() => onRequestSort(velocityKey)}
             >
               Relative Velocity
             </TableSortLabel>
@@ -77,7 +87,12 @@ export default function NeoTable({
 
       <TableBody>
         {rows.map((n, idx) => (
-          <NeoTableRow key={n.id} neoItem={n} rowNumber={page * rowsPerPage + idx + 1} />
+          <NeoTableRow
+            key={n.id}
+            neoItem={n}
+            rowNumber={page * rowsPerPage + idx + 1}
+            unit={unit}
+          />
         ))}
         {rows.length === 0 && (
           <TableRow>

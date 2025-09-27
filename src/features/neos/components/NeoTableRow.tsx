@@ -1,10 +1,12 @@
 import { Box, Chip, TableCell, TableRow, Typography } from '@mui/material';
 import { NeoItem } from '../types/NeoItem';
-import { formatKm, formatKmPerSec, formatMeters } from '../utils';
+import { formatCloseness, formatSize, formatVelocity } from '../utils';
+import { Units } from '../types/Units';
 
 type NeoTableRowProps = {
   neoItem: NeoItem;
   rowNumber: number;
+  unit: Units;
 };
 
 /**
@@ -15,7 +17,7 @@ type NeoTableRowProps = {
  * @param {NeoItem} neoItem - The NEO data for this row.
  * @param {number} rowNumber - The row index number to display.
  */
-export default function NeoTableRow({ neoItem, rowNumber }: NeoTableRowProps) {
+export default function NeoTableRow({ neoItem, rowNumber, unit }: NeoTableRowProps) {
   return (
     <TableRow hover key={neoItem.id}>
       <TableCell>{rowNumber}</TableCell>
@@ -26,9 +28,9 @@ export default function NeoTableRow({ neoItem, rowNumber }: NeoTableRowProps) {
           </Typography>
         </Box>
       </TableCell>
-      <TableCell align="right">{formatMeters(neoItem.sizeMeters)}</TableCell>
-      <TableCell align="right">{formatKm(neoItem.closenessKm)}</TableCell>
-      <TableCell align="right">{formatKmPerSec(neoItem.relativeVelocityKmS)}</TableCell>
+      <TableCell align="right">{formatSize(neoItem.sizeMeters, unit)}</TableCell>
+      <TableCell align="right">{formatCloseness(neoItem.closenessKm, unit)}</TableCell>
+      <TableCell align="right">{formatVelocity(neoItem.relativeVelocityKmH, unit)}</TableCell>
       <TableCell align="center">
         {neoItem.hazardous ? (
           <Chip size="small" color="error" label="Yes" />

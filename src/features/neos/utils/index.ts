@@ -1,5 +1,5 @@
 import { SortKey, Order, getComparator, stableSort } from './sort';
-import { formatMeters, formatKm, formatKmPerSec } from './utils';
+import { formatSize, formatCloseness, formatVelocity } from './utils';
 
 export type { SortKey, Order };
-export { getComparator, stableSort, formatMeters, formatKm, formatKmPerSec };
+export { getComparator, stableSort, formatSize, formatCloseness, formatVelocity };

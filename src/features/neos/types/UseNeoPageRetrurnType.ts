@@ -1,5 +1,6 @@
 import { SortKey } from '../utils';
 import { NeoItem } from './NeoItem';
+import { Units } from './Units';
 
 /**
  * @interface UseNeoPageReturnType - State and handlers exposed by the
@@ -21,9 +22,14 @@ export interface UseNeoPageReturnType {
   rowsPerPage: number;
   rows: NeoItem[];
   pagedRows: NeoItem[];
+  unit: Units;
+  sizeKey: SortKey;
+  closenessKey: SortKey;
+  velocityKey: SortKey;
   handleRequestSort: (key: SortKey) => void;
   handleChangePage: (_: unknown, newPage: number) => void;
   handleChangeRowsPerPage: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
+  setUnit: (unit: Units) => void;
 }

@@ -1,4 +1,11 @@
-export type SortKey = 'sizeMeters' | 'closenessKm' | 'relativeVelocityKmS';
+export type SortKey =
+  | 'sizeMeters'
+  | 'closenessKm'
+  | 'relativeVelocityKmH'
+  | 'sizeFeet'
+  | 'closenessMiles'
+  | 'relativeVelocityMiH';
+
 export type Order = 'asc' | 'desc';
 
 /**
@@ -24,13 +31,22 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
  * @param orderBy - Property key to sort by.
  * @returns A comparator suitable for Array.prototype.sort.
  */
-export function getComparator<Key extends keyof any>(
-  order: Order,
-  orderBy: Key,
-): (a: { [key in Key]: number }, b: { [key in Key]: number }) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+// export function getComparator<Key extends keyof any>(
+//   order: Order,
+//   orderBy: Key,
+// ): (a: { [key in Key]: number }, b: { [key in Key]: number }) => number {
+//   return order === 'desc'
+//     ? (a, b) => descendingComparator(a, b, orderBy)
+//     : (a, b) => -descendingComparator(a, b, orderBy);
+// }
+export function getComparator(order: Order, orderBy: string) {
+  return (a: any, b: any): number => {
+    if (order === 'desc') {
+      return b[orderBy] - a[orderBy];
+    } else {
+      return a[orderBy] - b[orderBy];
+    }
+  };
 }
 
 /**
