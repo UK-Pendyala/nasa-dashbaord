@@ -11,9 +11,14 @@ import { Units } from './Units';
  *  @property rowsPerPage - Number of rows displayed per page.
  *  @property rows - Sorted full list of NEOs.
  *  @property pagedRows - Slice of rows for the current page.
+ *  @property unit - Current unit system ('metric' | 'imperial').
+ *  @property sizeKey - Field used for size sorting based on unit.
+ *  @property closenessKey - Field used for closeness sorting based on unit.
+ *  @property velocityKey - Field used for velocity sorting based on unit.
  *  @property handleRequestSort - Callback to request a sort change.
  *  @property handleChangePage - Callback to update the current page.
  *  @property handleChangeRowsPerPage - Callback to update rows per page.
+ *  @property setUnit - Callback to change the unit system.
  */
 export interface UseNeoPageReturnType {
   order: 'asc' | 'desc';

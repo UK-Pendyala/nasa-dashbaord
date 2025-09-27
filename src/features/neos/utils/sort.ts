@@ -9,36 +9,13 @@ export type SortKey =
 export type Order = 'asc' | 'desc';
 
 /**
- * Compares two objects by a given numeric key in descending order.
+ * Creates a comparator function for sorting an array based on a specified key and order.
  *
- * @param a - First object to compare.
- * @param b - Second object to compare.
- * @param orderBy - Property key to sort by.
- * @returns Negative if `a < b`, positive if `a > b`, 0 if equal.
- */
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  const aVal = a[orderBy] as unknown as number;
-  const bVal = b[orderBy] as unknown as number;
-  if (bVal < aVal) return -1;
-  if (bVal > aVal) return 1;
-  return 0;
-}
-
-/**
- * Returns a comparator function based on sort order and key.
+ * @param order - The order of sorting, either 'asc' for ascending or 'desc' for descending.
+ * @param orderBy - The key of the object to sort by.
+ * @returns A comparator function that can be used with array sorting methods.
  *
- * @param order - Sort order (`asc` or `desc`).
- * @param orderBy - Property key to sort by.
- * @returns A comparator suitable for Array.prototype.sort.
  */
-// export function getComparator<Key extends keyof any>(
-//   order: Order,
-//   orderBy: Key,
-// ): (a: { [key in Key]: number }, b: { [key in Key]: number }) => number {
-//   return order === 'desc'
-//     ? (a, b) => descendingComparator(a, b, orderBy)
-//     : (a, b) => -descendingComparator(a, b, orderBy);
-// }
 export function getComparator(order: Order, orderBy: string) {
   return (a: any, b: any): number => {
     if (order === 'desc') {

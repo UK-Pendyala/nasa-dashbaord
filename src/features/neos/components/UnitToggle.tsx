@@ -5,6 +5,15 @@ type Props = {
   unit: Units;
   setUnit: (unit: Units) => void;
 };
+
+/**
+ * UnitToggle
+ * A component that renders a toggle switch for selecting between metric and imperial units.
+ *
+ * @param {Props} props - The component props.
+ * @param {Units} props.unit - The current unit system, either 'metric' or 'imperial'.
+ * @param {(unit: Units) => void} props.setUnit - A function to update the selected unit system.
+ */
 export default function UnitToggle({ unit, setUnit }: Props) {
   return (
     <Stack direction="row" spacing={1} sx={{ alignItems: 'center', marginRight: 5 }}>

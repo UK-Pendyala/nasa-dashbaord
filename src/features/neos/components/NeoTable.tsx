@@ -24,25 +24,25 @@ type Props = {
  * @param {NeoItem[]} rows - Current page of NEO rows to display.
  * @param {Order} order - Current sort direction ("asc" or "desc").
  * @param {SortKey} orderBy - Column currently sorted by.
- * @param {Function} onRequestSort - Handler to change sort column/direction.
  * @param {number} page - Current page number (zero-based).
  * @param {number} rowsPerPage - Number of rows displayed per page.
  * @param {SortKey} sizeKey - Key for size based on current unit system.
  * @param {SortKey} closenessKey - Key for closeness based on current unit system.
  * @param {SortKey} velocityKey - Key for velocity based on current unit system.
  * @param {Units} unit - Current unit system ("metric" or "imperial").
+ * @param {Function} onRequestSort - Handler to change sort column/direction.
  */
 export default function NeoTable({
   rows,
   order,
   orderBy,
-  onRequestSort,
   page,
   rowsPerPage,
   sizeKey,
   closenessKey,
   velocityKey,
   unit,
+  onRequestSort,
 }: Props) {
   return (
     <Table stickyHeader size="small" aria-label="NEO table">
