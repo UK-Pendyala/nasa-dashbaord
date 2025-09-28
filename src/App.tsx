@@ -44,7 +44,7 @@ export default function App() {
 
   const formSubmitHandler = (formValues: QueryParams) => {
     setParams(formValues);
-    refetch();
+    if (data || isError) refetch();
   };
 
   const showOverlay = !currentData && (isLoading || isFetching);
