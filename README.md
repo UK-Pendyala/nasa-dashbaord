@@ -159,7 +159,7 @@ Once deployed, the application will be accessible in production.
 - **Redux Toolkit Query (RTKQ)** – declarative fetching with normalized caching; no need for hand-rolled thunks, reducers or actions.  
 - **React Hook Form (RHF)** – minimal re-renders, simple validation.
 - **Material UI (MUI)** – accessible and responsive components out of the box.  
-- **Error Utilities (`toMessage`)** – consistent and human-readable error banner.  
+- **Error Utilities** – consistent and human-readable error banner.  
 - **Stable Sorting Helpers** – ensures predictable ordering of NEO rows.  
 
 ### Project Layout
