@@ -59,14 +59,7 @@ npm install
 
 ### 2. Configure Environment
 
-Create a `.env` file in the root directory with the following variables:
-
-```env
-REACT_APP_API_BASE_URL= #Base URL of the Fastify application
-REACT_APP_API_ENDPOINT=
-
-```
-These variables tell the frontend where to reach the Fastify backend.
+Create a `.env` file in the root directory with the variables from .env.example:
 
 ### 3. Setting the port for windows (Not required for Mac/Linux)
 

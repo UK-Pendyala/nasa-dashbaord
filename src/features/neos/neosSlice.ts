@@ -15,7 +15,7 @@ import type { NeosResponse } from './types/NeosResponse';
 import { GetNeosArgs } from './types/GetNeosArgs';
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL || '';
-const endpoint = process.env.REACT_APP_API_ENDPOINT || '';
+const endpoint = 'nasa/near-earth-objects'
 
 export const neosApi = createApi({
   reducerPath: 'neosApi',
