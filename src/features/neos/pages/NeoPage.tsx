@@ -32,13 +32,16 @@ import { UseNeoPageReturnType } from '../types/UseNeoPageRetrurnType';
 import UnitToggle from '../components/UnitToggle';
 import ProgressBar from '../components/ProgressBar';
 
-type Props = { response: NeosResponse; isFetching: boolean; isLoading: boolean };
+type Props = {
+  response: NeosResponse;
+  showProgressBar: boolean;
+};
 /**
  *
  * @param {NeosResponse} response - API response containing NEO items,
  *   total count, and query date range.
  */
-export default function NeoPage({ response, isFetching, isLoading }: Props) {
+export default function NeoPage({ response, showProgressBar }: Props) {
   const {
     order,
     orderBy,
@@ -58,7 +61,7 @@ export default function NeoPage({ response, isFetching, isLoading }: Props) {
   return (
     <Paper variant="outlined">
       <Toolbar sx={{ px: 2, justifyContent: 'space-between', position: 'relative' }}>
-        {isFetching && !isLoading && <ProgressBar />}
+        {showProgressBar && <ProgressBar />}
         <Typography variant="subtitle1">
           Results: {response.count} &nbsp; ({response.startDate} → {response.endDate})
         </Typography>

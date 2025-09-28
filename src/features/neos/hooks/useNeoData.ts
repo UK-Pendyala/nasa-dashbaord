@@ -9,10 +9,21 @@ type Props = { defaultValues?: FormValues };
 
 const useNeoData = ({ defaultValues }: Props) => {
   // Initialize form with OPTIONAL defaults (falling back to empty strings)
-  const { register, handleSubmit, formState } = useForm<FormValues>({
+  const { register, handleSubmit, formState, setValue, getValues } = useForm<FormValues>({
     defaultValues: defaultValues ?? { startDate: '', endDate: '' },
   });
-  return { register, handleSubmit, formState };
+  const setEndDateFromStartDate = () => {
+    const startDate = getValues('startDate');
+    const endDate = getValues('endDate');
+    if (startDate && !endDate) {
+      const startDateObj = new Date(startDate);
+      const endDateObj = new Date(startDateObj);
+      endDateObj.setDate(startDateObj.getDate() + 7);
+      setValue('endDate', endDateObj.toISOString().split('T')[0]);
+    }
+  };
+
+  return { register, handleSubmit, formState, setEndDateFromStartDate };
 };
 
 export default useNeoData;

@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 type Props = {
   defaultValues?: FormValues;
-  onSubmit: (v: FormValues) => void;
+  submitHandler: (v: FormValues) => void;
 };
 
 /**
@@ -15,12 +15,18 @@ type Props = {
  * @param {FormValues} defaultValues - Optional initial values for the form.
  * @param {Function} onSubmit - Callback triggered with validated form values.
  */
-export default function DateRangeForm({ onSubmit, defaultValues }: Props) {
+export default function DateRangeForm({ submitHandler, defaultValues }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setEndDateFromStartDate,
   } = useNeoData({ defaultValues });
+
+  const onSubmit = (data: FormValues) => {
+    setEndDateFromStartDate();
+    submitHandler(data);
+  };
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mb: 2 }}>

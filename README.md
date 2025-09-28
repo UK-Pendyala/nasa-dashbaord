@@ -23,9 +23,9 @@ The backend (Fastify) acts as a proxy and normalizer for NASA’s raw data, whil
   - On window focus (`refetchOnFocus: true`).  
   - On reconnect (`refetchOnReconnect: true`).  
   - On mount or argument change (`refetchOnMountOrArgChange: true`).  
-    This means that when a user fetches data for a specific date for the first time, a loading indicator is displayed on the screen. Once the data is fetched, it is cached by RTK in Redux internally. If the user fetches data for a different date for the first time, they will again see a loading indicator while that data is being fetched. However, if the user views dates they have previously accessed (i.e., the data is already cached), no loading indicator will be shown. Instead, the cached data is displayed immediately, and the data is silently refetched in the background and updated instantaneously.
-- **Loading Indicator** – Shown only when no cached data exists (`!currentData && isLoading || isFetching`).  
-  - If cached data exists, stale data is shown instantly while silently refetching in the background.  
+    This means that when a user fetches data for a specific date for the first time, a loading spinner is displayed on the screen. Once the data is fetched, it is cached by RTK in Redux internally. If the user fetches data for a different date for the first time, they will again see a loading spinner while that data is being fetched. However, if the user views dates they have previously accessed (i.e., the data is already cached), no loading indicator will be shown. Instead, the cached data is displayed immediately, and the data is refetched in the background and updated instantaneously. During this phase, a progress bar is shown at the top of the table.
+- **Loading Indicator** – Shown only when no cached data exists 
+  - If cached data exists, stale data is shown instantly with a progress bar on top of the table, while refetching in the background.  
 - **Trade-off** – Avoids flickering spinners when cached data is available, while still ensuring data freshness.  
 - **High-Frequency Auto Refresh** – Can be enabled using `pollingInterval` (commented in the code). 
 
@@ -197,12 +197,8 @@ Implement page/limit query parameters in the backend and wire them to UI control
 Add a client-side search filter by name and columns or ranges; for very large datasets, add a server-side `q` parameter for full-text search.  
 **Benefits:** Enables easy identification of rows based on specific needs or defined ranges. 
 
-### 3. Units Toggle (Metric ↔︎ Imperial)
-Introduce a global toggle to convert and display values (meters ↔︎ feet, km ↔︎ miles, km/s ↔︎ mi/s).  
-**Current State:** The app **only supports metric units**.  
-**Benefits:** People who understand only imperial system can also consume and understand this data
 
-### 4. CI/CD Pipeline with Tests
+### 3. CI/CD Pipeline with Tests
 Add GitHub Actions (or similar) with separate jobs for:
 - **Type Check & Lint:** Use TypeScript and ESLint to ensure code quality and consistency.
 - **Tests:** 
@@ -210,7 +206,7 @@ Add GitHub Actions (or similar) with separate jobs for:
   2. **Unit Tests:** Ensure individual functions and components work as expected using Jest and React Testing Library.
 **Benefits:** Continuous Integration and Continuous Deployment to staging without manual effort.
 
-### 5. AI-Powered Data Analytics Chatbot
+### 4. AI-Powered Data Analytics Chatbot
 Enable natural-language querying of NEO data through a chat interface.
 **Approach:**
 1. **Chat Server with Agentic AI:** Build a small service on AWS EC2 that orchestrates multiple “tools/agents” (e.g., **OpenAI**, **Claude**) to parse user questions and plan actions.

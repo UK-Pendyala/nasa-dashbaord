@@ -42,12 +42,13 @@ export default function App() {
       // pollingInterval: 10000 // can enable this for auto-refresh
     });
 
-  const formSubmitHandler = (formValues: QueryParams) => {
+  const updateQueryParamsHandler = (formValues: QueryParams) => {
     setParams(formValues);
     if (data || isError) refetch();
   };
 
   const showOverlay = !currentData && (isLoading || isFetching);
+  const showProgressBar = !showOverlay && isFetching && !isLoading;
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Typography variant="h5" sx={{ mb: 2 }}>
@@ -64,13 +65,11 @@ export default function App() {
         to process this data, making it easy for the frontend to search and display results.
       </Typography>
 
-      <DateRangeForm onSubmit={formSubmitHandler} />
+      <DateRangeForm submitHandler={updateQueryParamsHandler} />
 
       {error && <ErrorBanner error={error} />}
 
-      {isSuccess && data && (
-        <NeoPage response={data} isFetching={isFetching} isLoading={isLoading} />
-      )}
+      {isSuccess && data && <NeoPage response={data} showProgressBar={showProgressBar} />}
 
       {!data && !isFetching && !error && (
         <Box
