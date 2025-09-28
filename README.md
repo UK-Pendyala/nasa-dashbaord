@@ -217,3 +217,88 @@ Enable natural-language querying of NEO data through a chat interface.
 3. **Server-Side Caching:** Cache API responses and analytics results keyed by normalized prompts/date ranges to reduce latency and external API calls.
 4. **Query Translation:** Users feel like they are interacting with a real agent who has comprehensive knowledge about the queried data.
 5. **UX:** Inline answers are displayed in a chat window, which can be positioned at the bottom-right corner of the screen.
+
+
+## Trade-offs & Rationale
+
+### 1. Redux (Toolkit + RTK Query) vs Context API
+
+#### Why RTK/RTKQ?
+
+- **Data Fetching & Cache**:  
+  RTK Query provides features like request deduplication, normalized per-argument caching, background refetch, and stale-while-revalidate out of the box—features that Context API does not offer.
+
+- **Invalidation & Revalidation**:  
+  RTK Query supports tag-based invalidation and automatic refetching on focus, reconnect, or mount. Using Context API would require implementing custom fetch/cancel logic and manual cache management which is very complex.
+
+- **Ergonomics & Developer Experience (DX)**:  
+  RTK Query offers co-located endpoints, generated hooks, built-in loading/error states, strong TypeScript types, and DevTools integration. In contrast, Context API scales poorly as state shapes and asynchronous flows become more complex.
+
+- **Performance**:  
+  RTK Query minimizes re-renders by scoping subscriptions to specific queries. Context API, on the other hand, re-renders all consumers whenever its value changes unless the context is carefully split.
+
+#### my Choice
+
+I chose **Redux Toolkit + RTK Query** for its robust and scalable data fetching and caching capabilities, which require minimal custom code.
+
+### 2. Material UI vs Bootstrap
+
+#### Material UI
+
+- **React-First Components**:  
+  Rich, accessible components (e.g., Tables, Stacks, Papers) with strong TypeScript support.
+
+- **Theming & Design System**:  
+  Consistent design tokens (spacing, typography, pagination), with straightforward documentation.
+
+- **Composable APIs**:  
+  Features like the `sx` prop, styled components, and slots allow for deep overrides without struggling with global CSS.
+
+- **Tree-Shaking**:  
+  Component-level imports ensure that only the necessary parts of the framework are included.
+
+#### Bootstrap
+
+- **Utility & Familiarity**:  
+  Provides quick layouts with utility classes and is widely known with a large ecosystem.
+
+- **Global CSS Model**:  
+  Effective for prototypes, but overrides can become messy in larger applications.
+
+- **JS Integration**:  
+  Historically jQuery-centric (improved in v5), but still less “React-native” than Material UI.
+
+#### my Choice
+
+I chose **Material UI** for its React-native patterns, strong TypeScript types, and theming capabilities that greatly with my component-driven application architecture.
+
+### 3. Client-side Pagination vs Server-side Pagination
+
+#### Client-side Pagination (What I Used)
+
+- **Pros**:  
+  - Simple to implement (Material UI).  
+  - Instant page changes.  
+  - No extra backend parameters required.  
+  - Ideal for small to medium result sets.  
+
+- **Cons**:  
+  - All data is loaded upfront, leading to larger payloads and higher initial latency/memory usage.  
+  - Filters and sorts are performed in the browser only.  
+
+#### Server-side Pagination
+
+- **Pros**:  
+  - Scales well for large datasets.  
+  - Smaller payloads per request.  
+  - Backend can apply authoritative sorting and filtering.  
+  - Faster first paint for large datasets.  
+
+- **Cons**:  
+  - More complex to implement (requires API support for page, limit, sort, and filter parameters).  
+  - Involves more round-trips to the server.  
+  - Managing cache keys and ensuring a smooth UX (e.g., disabled states, optimistic updates) can be tricky.  
+
+#### my Choice
+
+I chose **Client-side Pagination** for its simplicity and speed at current data sizes.
