@@ -61,6 +61,10 @@ npm install
 
 Create a `.env` file in the root directory with the variables from .env.example:
 
+```env
+REACT_APP_API_BASE_URL=http://localhost:3000/amex-challenge/api
+```
+
 ### 3. Setting the port for windows (Not required for Mac/Linux)
 
 The frontend must run on **port 3001**, since the backend only allows this origin in its **CORS configuration**.  
@@ -151,7 +155,7 @@ Once deployed, the application will be accessible in production.
  
 ## Developer Experience (DX)
 
-- **TypeScript Everywhere** – static types reduce runtime bugs and improve IDE autocomplete.  
+- **TypeScript** – static types reduce runtime bugs and improve IDE autocomplete.  
 - **Redux Toolkit Query (RTKQ)** – declarative fetching with normalized caching; no need for hand-rolled thunks, reducers or actions.  
 - **React Hook Form (RHF)** – minimal re-renders, simple validation.
 - **Material UI (MUI)** – accessible and responsive components out of the box.  
