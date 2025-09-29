@@ -51,7 +51,7 @@ The backend (Fastify) acts as a proxy and normalizer for NASA’s raw data, whil
 ### 1. Clone & Install
 ```bash
 git clone https://github.com/UK-Pendyala/nasa-dashbaord.git
-cd nasa-neo-dashboard
+cd nasa-dashboard
 npm install
 ```
 
