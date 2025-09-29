@@ -292,4 +292,4 @@ I chose **Material UI** for its React support, strong TypeScript types, and them
 
 #### my Choice
 
-I chose **Client-side Pagination** for its simplicity and speed as the current project requirement.
+I chose **Client-side Pagination** for its simplicity and speed as per the current project requirement.
